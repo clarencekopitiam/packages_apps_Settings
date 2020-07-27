@@ -12,7 +12,5 @@
 -->
 
 <resources>
-
     <dimen name="stroke_widthAboutUI">1dp</dimen>
-
 </resources>
