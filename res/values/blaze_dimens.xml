@@ -13,4 +13,7 @@
 
 <resources>
     <dimen name="stroke_widthAboutUI">1dp</dimen>
+
+    <!-- Fingerprint -->
+    <dimen name="fingerprint_find_sensor_padding_top">16dp</dimen>
 </resources>
