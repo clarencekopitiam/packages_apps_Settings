@@ -26,6 +26,16 @@
         android:fragment="com.android.settings.deviceinfo.aboutphone.MyDeviceInfoFragment"
         settings:controller="com.android.settings.deviceinfo.aboutphone.TopLevelAboutDevicePreferenceController"/>
 
+    <Preference
+        android:key="top_level_blaze"
+        android:title="@string/blazehouse_title"
+        android:summary="@string/build_tweaks_summary_title"
+        android:icon="@drawable/ic_settings_blaze"
+        android:order="-204"
+        android:fragment="com.blaze.house.BlazeHouse"
+	settings:layout="@layout/blaze_dashboard_preference_bottom"
+        settings:controller="com.blaze.house.TopLevelExtensionsEntryPreferenceController" />
+
     <PreferenceCategory
         android:order="-200"
         android:selectable="false"
