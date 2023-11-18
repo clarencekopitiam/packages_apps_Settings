@@ -198,6 +198,12 @@
             android:defaultValue="false"
             settings:controller="com.android.settings.custom.touch.HighTouchPollingRateSettingsPreferenceController" />
 
+	<SwitchPreference
+            android:key="touch_polling"
+            android:title="@string/touch_polling_title"
+            android:summary="@string/touch_polling_summary"
+            settings:controller="com.android.settings.display.TouchPollingPreferenceController" />
+
         <com.blaze.house.preferences.SystemSettingSwitchPreference
             android:key="high_touch_sensitivity_enable"
             android:title="@string/high_touch_sensitivity_title"
