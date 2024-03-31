@@ -25,13 +25,13 @@ class AboutDevice : FrameLayout {
     init {
         inflate(context, R.layout.device_info, this)
         // ROM Version
-        val version = SystemProperties.get("ro.modversion")
-        val type = SystemProperties.get("ro.blaze.releasetype")
+        val version = SystemProperties.get("org.blaze.version")
+        val type = SystemProperties.get("ro.blaze.buildtype")
 
-        findViewById<TextView>(R.id.romVersion).text = (if (type == "GAPPS") {
-            version + " " + context.getString(R.string.about_device_version_type_gapps)
+        findViewById<TextView>(R.id.romVersion)?.text = (if (type == "OFFICIAL") {
+            version + " " + context.getString(R.string.about_device_version_type_official)
         } else {
-            version + " " + context.getString(R.string.about_device_version_type_vanilla)
+            version + " " + context.getString(R.string.about_device_version_type_unofficial)
         }).toString()
 
         // Device
@@ -42,14 +42,14 @@ class AboutDevice : FrameLayout {
         if (mDeviceName == null) {
             mDeviceName = Build.MODEL
         }
-        findViewById<LinearLayout>(R.id.deviceEdit).setOnClickListener {
+        findViewById<LinearLayout>(R.id.deviceEdit)?.setOnClickListener {
             val alert: AlertDialog.Builder = AlertDialog.Builder(context, R.style.Theme_AlertDialog)
             val dialogView: View = View.inflate(context, R.layout.blaze_device_name_dialog, null)
-            val mEditText: EditText = dialogView.findViewById(R.id.device_edit_text)
+            val mEditText: EditText? = dialogView.findViewById(R.id.device_edit_text) as? EditText
             alert.setTitle(context.getString(R.string.my_device_info_device_name_preference_title))
             alert.setView(dialogView)
             alert.setPositiveButton(android.R.string.ok) { dialog, _ ->
-                listener?.invoke(mEditText.text.toString())
+                listener?.invoke(mEditText?.text.toString())
                 dialog.dismiss()
             }
             alert.setNegativeButton(android.R.string.cancel) { dialog, _ -> dialog.dismiss() }
@@ -61,7 +61,7 @@ class AboutDevice : FrameLayout {
             if (mDeviceName == null) {
                 mDeviceName = Build.MODEL
             }
-            mEditText.setText(mDeviceName)
+            mEditText?.setText(mDeviceName)
             alert.show()
         }
     }
@@ -72,12 +72,12 @@ class AboutDevice : FrameLayout {
 
     fun setDeviceName(deviceName: String, validator: Boolean) {
         if (validator) {
-            findViewById<TextView>(R.id.deviceName).text = deviceName
+            findViewById<TextView>(R.id.deviceName)?.text = deviceName
             listener?.invoke(deviceName)
         }
     }
 
     fun setDeviceName(deviceName: String) {
-        findViewById<TextView>(R.id.deviceName).text = deviceName
+        findViewById<TextView>(R.id.deviceName)?.text = deviceName
     }
 }
