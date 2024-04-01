@@ -71,13 +71,16 @@ public class DeviceNamePreferenceController extends BasePreferenceController
     @Override
     public void displayPreference(PreferenceScreen screen) {
         super.displayPreference(screen);
-        mDeviceCard = mPreference.findViewById(R.id.about_device_header);
-        final CharSequence deviceName = getSummary();
-	mDeviceCard.setDeviceName(deviceName.toString(), mWifiDeviceNameTextValidator.isTextValid(deviceName.toString()));
-        mDeviceCard.setListener(s -> {
+        mPreference = (LayoutPreference) screen.findPreference(getPreferenceKey());
+        if (mPreference != null) {
+            mDeviceCard = mPreference.findViewById(R.id.about_device_header);
+            final CharSequence deviceName = getSummary();
+            mDeviceCard.setDeviceName(deviceName.toString(), mWifiDeviceNameTextValidator.isTextValid(deviceName.toString()));
+            mDeviceCard.setListener(s -> {
             setDeviceName(s);
             return Unit.INSTANCE;
         });
+      }
     }
 
     private void initializeDeviceName() {
